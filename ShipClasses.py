@@ -12,6 +12,9 @@ class ShipBullet:
         return pygame.draw.line(win, self.color, (self.x, self.y),
                          (self.x, self.y + 5))
 
+    def size(self):
+        return ( (self.x, self.y), (1, 5))
+
 class Ship:
     def __init__(self, x_axis, y_axis):
         self.x = x_axis
@@ -21,6 +24,8 @@ class Ship:
         self.bullet_list = []
         self.color = (255, 255, 255)
 
+    def size(self):
+        return ( (self.x, self.y), (64, 64))
     def drawShip(self, win):
         pygame.draw.rect(win, self.color, (self.x - 2, self.y - 2, 64, 64))
 
@@ -58,6 +63,31 @@ class Ship:
             else:
                 bullet.y += 1
 
+
+    def checkBulletHit(self, ship):
+        for i, bullet in enumerate(self.bullet_list):
+            if self.collides(ship.size(), bullet.size()):
+                ship.isHit = True
+                del self.bullet_list[i]
+
+
+    def collides(self, rect1, rect2):
+        r1x = rect1[0][0]
+        r1y = rect1[0][1]
+
+        r2x = rect2[0][0]
+        r2y = rect2[0][1]
+
+        r1w = rect1[1][0]
+        r1h = rect1[1][1]
+
+        r2w = rect2[1][0]
+        r2h = rect2[1][1]
+
+        if (r1x < (r2x + r2w) and (r1x + r1w) > r2x and r1y < (r2y + r2h) and (r1y + r1h) > r2y):
+            return True
+        else:
+            return False
 
 class SpaceShip(Ship):
 

@@ -35,10 +35,16 @@ def main(win):
         fly_time += clock.get_rawtime()
         clock.tick()
 
-        ship.drawShip(win)
-        ship.drawbullets(win)
+        if not ship.isHit:
+            ship.drawShip(win)
 
-        enemyship.drawShip(win)
+        ship.drawbullets(win)
+        ship.checkBulletHit(enemyship)
+
+        if not enemyship.isHit:
+            enemyship.drawShip(win)
+
+
         #enemyship.drawbullets(win)
 
         if fly_time / 1000 >= fly_speed:
