@@ -42,7 +42,7 @@ def main(win):
         #enemyship.drawbullets(win)
 
         if fly_time / 1000 >= fly_speed:
-            ship.bulletmove()
+            ship.bulletmove("up")
             fly_time = 0
             if keys[pygame.K_LEFT]:
                 ship.moveShip("left")
