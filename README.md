@@ -10,7 +10,8 @@ Using Python and PyGame to create space invader game
 > * bullets collide detection 
 > * List of Enemy ships
 > * Win/Lose Screen
+> * Enemy movement  
 
 ### Outstanding:
-> * Enemy movement 
+> * Score board
  

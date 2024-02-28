@@ -6,6 +6,7 @@ class Enemylist:
         self.column = 5
         self.EnemyArr = [[0 for j in range(self.column)] for i in range(self.row)]
         self.TotalShip = 15
+        self.move = "left"
     def buildArr(self):
         for i, line in enumerate(self.EnemyArr):
             y = (i+1) * 70
@@ -19,10 +20,22 @@ class Enemylist:
                 if not enemyship.isHit:
                     enemyship.drawShip(win)
 
+    def EneniesMove(self, screen_width):
+        for i, line in enumerate(self.EnemyArr):
+            for j, enemyship in enumerate(line):
+                if enemyship.inSideScreen(self.move, screen_width):
+                    enemyship.moveShip(self.move)
+                else:
+                    if self.move == "right":
+                        self.move = "left"
+                    else:
+                        self.move = "right"
+
     def drawbullets(self, win):
         for i, line in enumerate(self.EnemyArr):
             for j, enemyship in enumerate(line):
                 enemyship.drawbullets(win)
+
 
     def isEneniesHit(self, ship):
         for i, line in enumerate(self.EnemyArr):

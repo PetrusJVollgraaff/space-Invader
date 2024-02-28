@@ -86,13 +86,6 @@ class Ship:
         else:
             return False
 
-class SpaceShip(Ship):
-
-    def __init__(self, x_axis, y_axis):
-        super().__init__(x_axis, y_axis)
-        self.color = (255, 255, 255)
-        self.player = "player"
-
     def inSideScreen(self, dir, screen_width):
         if self.x >= 6 and dir == "left":
             return True
@@ -101,6 +94,12 @@ class SpaceShip(Ship):
 
         return False
 
+class SpaceShip(Ship):
+
+    def __init__(self, x_axis, y_axis):
+        super().__init__(x_axis, y_axis)
+        self.color = (255, 255, 255)
+        self.player = "player"
 
 class EnemyShip(Ship):
 
@@ -108,6 +107,3 @@ class EnemyShip(Ship):
         super().__init__(x_axis, y_axis)
         self.color = (255, 0, 0)
         self.player = "enemy"
-
-    def shootRandom(self, win):
-        self.shoot(win)

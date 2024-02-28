@@ -52,7 +52,9 @@ def main(win):
     fly_time = 0
     fly_speed = 0.001
     enemyshoot_time = 0
-    enemyshoot_speed = 0.9
+    enemyshoot_speed = 1.9
+    enemymove_time = 0
+    enemymove_speed = 0.09
     enemyships.buildArr()
 
     while run:
@@ -60,6 +62,7 @@ def main(win):
         keys = pygame.key.get_pressed()
         fly_time += clock.get_rawtime()
         enemyshoot_time += clock.get_rawtime()
+        enemymove_time  += clock.get_rawtime()
         clock.tick()
 
         if not ship.isHit:
@@ -71,6 +74,10 @@ def main(win):
         enemyships.isEneniesHit(ship)
         enemyships.drawEnenies(win)
 
+
+        if enemymove_time / 1000 >= enemymove_speed:
+            enemyships.EneniesMove(screen_width)
+            enemymove_time = 0
 
         if enemyshoot_time / 1000 >= enemyshoot_speed:
             enemyships.EnimiesShoot(win)
