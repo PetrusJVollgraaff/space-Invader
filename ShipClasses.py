@@ -22,11 +22,12 @@ class Ship:
         self.player = "enemy"
         self.bullet_list = []
         self.color = (255, 255, 255)
+        self.shipsize = (40,40)
 
     def size(self):
-        return ( (self.x, self.y), (64, 64))
+        return ( (self.x, self.y), self.shipsize)
     def drawShip(self, win):
-        pygame.draw.rect(win, self.color, (self.x - 2, self.y - 2, 64, 64))
+        pygame.draw.rect(win, self.color, (self.x - 2, self.y - 2, self.shipsize[0], self.shipsize[1]))
 
     def moveShip(self, dir):
         if dir == "up":
@@ -89,7 +90,7 @@ class Ship:
     def inSideScreen(self, dir, screen_width):
         if self.x >= 6 and dir == "left":
             return True
-        elif (self.x + 65) <= screen_width - 6 and dir == "right":
+        elif (self.x + self.shipsize[0]) <= screen_width - 6 and dir == "right":
             return True
 
         return False

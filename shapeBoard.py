@@ -2,16 +2,21 @@ import random
 from ShipClasses import EnemyShip
 class Enemylist:
     def __init__(self):
-        self.row = 3
-        self.column = 5
+        self.row = 4
+        self.column = 7
         self.EnemyArr = [[0 for j in range(self.column)] for i in range(self.row)]
         self.TotalShip = 15
         self.move = "left"
     def buildArr(self):
         for i, line in enumerate(self.EnemyArr):
-            y = (i+1) * 70
+            y = (i + 1) * 70
+
+
             for j, column in enumerate(line):
                 x = (j + 1) * 70
+                #if i % 2 == 0:
+                #    x = (j + 1) * 40
+
                 self.EnemyArr[i][j] = EnemyShip(x, y)
 
     def drawEnenies(self, win):
