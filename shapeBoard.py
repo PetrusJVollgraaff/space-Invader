@@ -57,3 +57,13 @@ class Enemylist:
         for i, line in enumerate(self.EnemyArr):
             for j, enemyship in enumerate(line):
                 enemyship.bulletmove("down")
+
+    def EneniesWon(self, ship):
+        for i, line in enumerate(self.EnemyArr):
+            for j, enemyship in enumerate(line):
+                if not ship.isHit:
+                    enemyship.checkBulletHit(ship)
+                    if ship.isHit:
+                        return True
+
+        return False

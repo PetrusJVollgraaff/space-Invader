@@ -52,7 +52,7 @@ def main(win):
     fly_time = 0
     fly_speed = 0.001
     enemyshoot_time = 0
-    enemyshoot_speed = 0.29
+    enemyshoot_speed = 0.9
     enemyships.buildArr()
 
     while run:
@@ -100,6 +100,9 @@ def main(win):
 
         if enemyships.isAllEneniesHit():
             end_screen(win, "You wins")
+            run = False
+        elif enemyships.EneniesWon(ship):
+            end_screen(win, "You Lose")
             run = False
 
         pygame.display.update()
