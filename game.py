@@ -43,10 +43,14 @@ def end_screen(win, text):
             elif event.type == pygame.USEREVENT+1:
                 run = False
 
+def score_board(win, score, color, top, left, font ):
+    label = font.render("Score: " + str(score), 1, color)
 
+    win.blit(label, (top, left))
 def main(win):
     run = True
     ship = SpaceShip(screen_width//2, play_height - 70)
+    font = pygame.font.SysFont('comicsans', 12)
     enemyships = Enemylist()
     clock = pygame.time.Clock()
     fly_time = 0
@@ -56,9 +60,11 @@ def main(win):
     enemymove_time = 0
     enemymove_speed = 0.09
     enemyships.buildArr()
+    score = 0
 
     while run:
         win.fill((0, 0, 0))
+        score_board(win, score, (255,255,255), 0, 0, font)
         keys = pygame.key.get_pressed()
         fly_time += clock.get_rawtime()
         enemyshoot_time += clock.get_rawtime()
@@ -71,7 +77,7 @@ def main(win):
         ship.drawbullets(win)
 
         enemyships.drawbullets(win)
-        enemyships.isEneniesHit(ship)
+        score = enemyships.isEneniesHit(ship, score)
         enemyships.drawEnenies(win)
 
 

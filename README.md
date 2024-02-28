@@ -11,7 +11,6 @@ Using Python and PyGame to create space invader game
 > * List of Enemy ships
 > * Win/Lose Screen
 > * Enemy movement  
-
-### Outstanding:
 > * Score board
+
  

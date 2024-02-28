@@ -42,13 +42,15 @@ class Enemylist:
                 enemyship.drawbullets(win)
 
 
-    def isEneniesHit(self, ship):
+    def isEneniesHit(self, ship, score):
         for i, line in enumerate(self.EnemyArr):
             for j, enemyship in enumerate(line):
                 if not enemyship.isHit:
                     ship.checkBulletHit(enemyship)
                     if enemyship.isHit:
                         self.TotalShip -= 1
+                        score += 10
+        return score
 
     def isAllEneniesHit(self):
         for i, line in enumerate(self.EnemyArr):
