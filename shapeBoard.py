@@ -5,7 +5,7 @@ class Enemylist:
         self.row = 4
         self.column = 7
         self.EnemyArr = [[0 for j in range(self.column)] for i in range(self.row)]
-        self.TotalShip = 15
+        self.TotalShip = self.row * self.column
         self.move = "left"
     def buildArr(self):
         for i, line in enumerate(self.EnemyArr):
@@ -14,8 +14,8 @@ class Enemylist:
 
             for j, column in enumerate(line):
                 x = (j + 1) * 70
-                #if i % 2 == 0:
-                #    x = (j + 1) * 40
+                if i % 2 == 0:
+                    x -=  40
 
                 self.EnemyArr[i][j] = EnemyShip(x, y)
 
@@ -71,10 +71,10 @@ class Enemylist:
             if not self.EnemyArr[j[0]][j[1]].isHit:
                 self.EnemyArr[j[0]][j[1]].shoot(win)
 
-    def EnimiesBulletMove(self):
+    def EnimiesBulletMove(self, screen_height):
         for i, line in enumerate(self.EnemyArr):
             for j, enemyship in enumerate(line):
-                enemyship.bulletmove("down")
+                enemyship.bulletmove("down", screen_height)
 
     def EneniesWon(self, ship):
         for i, line in enumerate(self.EnemyArr):

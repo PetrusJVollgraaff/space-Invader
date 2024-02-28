@@ -56,12 +56,16 @@ class Ship:
         for bullet in self.bullet_list:
             bullet.drawbullet( win )
 
-    def bulletmove(self, dir):
-        for bullet in self.bullet_list:
+    def bulletmove(self, dir, screen_height):
+        for i, bullet in enumerate(self.bullet_list):
             if dir == 'up':
                 bullet.y -= 1
             else:
                 bullet.y += 1
+
+            if bullet.y < 0 or bullet.y > screen_height:
+                del self.bullet_list[i]
+
 
     def checkBulletHit(self, ship):
         for i, bullet in enumerate(self.bullet_list):

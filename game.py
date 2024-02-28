@@ -84,8 +84,8 @@ def main(win):
             enemyshoot_time = 0
 
         if fly_time / 1000 >= fly_speed:
-            ship.bulletmove("up")
-            enemyships.EnimiesBulletMove()
+            ship.bulletmove("up", screen_height)
+            enemyships.EnimiesBulletMove(screen_height)
 
             fly_time = 0
 
