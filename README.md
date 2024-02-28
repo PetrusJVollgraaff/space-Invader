@@ -6,9 +6,11 @@ Using Python and PyGame to create space invader game
 > * Create Ship that moves left and right
 > * Create Enemy ship
 > * Create Ship bullets that moves
-
-### Outstanding:
 > * Enemy Shooting
 > * bullets collide detection 
+> * List of Enemy ships
+> * Win/Lose Screen
+
+### Outstanding:
 > * Enemy movement 
-> * List of Enemy ships 
+ 
