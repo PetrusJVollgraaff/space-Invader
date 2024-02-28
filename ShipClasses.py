@@ -5,7 +5,6 @@ class ShipBullet:
     def __init__(self, x_axis, y_axis, color):
         self.x = x_axis
         self.y = y_axis
-        self.didHit = False
         self.color = color
 
     def drawbullet(self, win):

@@ -19,7 +19,6 @@ def main_menu(win):
                 quit()
 
             if event.type == pygame.KEYDOWN:
-                print("hello world")
                 game.main(win)
 
     pygame.display.quit()

@@ -47,37 +47,38 @@ def end_screen(win, text):
 def main(win):
     run = True
     ship = SpaceShip(screen_width//2, play_height - 70)
-    #enemyship = EnemyShip(screen_width//2, 70)
     enemyships = Enemylist()
     clock = pygame.time.Clock()
     fly_time = 0
     fly_speed = 0.001
+    enemyshoot_time = 0
+    enemyshoot_speed = 0.29
     enemyships.buildArr()
-
 
     while run:
         win.fill((0, 0, 0))
         keys = pygame.key.get_pressed()
         fly_time += clock.get_rawtime()
+        enemyshoot_time += clock.get_rawtime()
         clock.tick()
 
         if not ship.isHit:
             ship.drawShip(win)
 
         ship.drawbullets(win)
+
         enemyships.drawbullets(win)
-        # enemyship.drawbullets(win)
-
-        #ship.checkBulletHit(enemyship)
         enemyships.isEneniesHit(ship)
-
-        #if not enemyship.isHit:
-        #    enemyship.drawShip(win)
         enemyships.drawEnenies(win)
 
 
+        if enemyshoot_time / 1000 >= enemyshoot_speed:
+            enemyships.EnimiesShoot(win)
+            enemyshoot_time = 0
+
         if fly_time / 1000 >= fly_speed:
             ship.bulletmove("up")
+            enemyships.EnimiesBulletMove()
 
             fly_time = 0
 
@@ -86,13 +87,6 @@ def main(win):
 
             elif keys[pygame.K_RIGHT] and ship.inSideScreen("right", screen_width):
                 ship.moveShip("right")
-
-            '''elif keys[pygame.K_UP]:
-                ship.moveShip("up")
-
-            elif keys[pygame.K_DOWN]:
-                ship.moveShip("down")
-            '''
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
