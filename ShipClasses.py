@@ -63,13 +63,11 @@ class Ship:
             else:
                 bullet.y += 1
 
-
     def checkBulletHit(self, ship):
         for i, bullet in enumerate(self.bullet_list):
             if self.collides(ship.size(), bullet.size()):
                 ship.isHit = True
                 del self.bullet_list[i]
-
 
     def collides(self, rect1, rect2):
         r1x = rect1[0][0]
@@ -103,3 +101,6 @@ class EnemyShip(Ship):
         super().__init__(x_axis, y_axis)
         self.color = (255, 0, 0)
         self.player = "enemy"
+
+    def shootRandom(self, win):
+        self.shoot(win)

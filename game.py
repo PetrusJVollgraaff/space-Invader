@@ -1,5 +1,6 @@
 import pygame
 from ShipClasses import SpaceShip, EnemyShip
+from shapeBoard import Enemylist
 
 pygame.font.init()
 
@@ -24,10 +25,12 @@ def draw_text(win, text, color, top, left, font ):
 def main(win):
     run             = True
     ship = SpaceShip(screen_width//2, play_height - 70)
-    enemyship = EnemyShip(screen_width // 2, 70)
+    #enemyship = EnemyShip(screen_width//2, 70)
+    enemyships = Enemylist()
     clock = pygame.time.Clock()
     fly_time = 0
     fly_speed = 0.001
+    enemyships.buildArr()
 
     while run:
         win.fill((0, 0, 0))
@@ -39,16 +42,20 @@ def main(win):
             ship.drawShip(win)
 
         ship.drawbullets(win)
-        ship.checkBulletHit(enemyship)
+        enemyships.drawbullets(win)
+        # enemyship.drawbullets(win)
 
-        if not enemyship.isHit:
-            enemyship.drawShip(win)
+        #ship.checkBulletHit(enemyship)
+        enemyships.isEneniesHit(ship)
 
+        #if not enemyship.isHit:
+        #    enemyship.drawShip(win)
+        enemyships.drawEnenies(win)
 
-        #enemyship.drawbullets(win)
 
         if fly_time / 1000 >= fly_speed:
             ship.bulletmove("up")
+
             fly_time = 0
             if keys[pygame.K_LEFT]:
                 ship.moveShip("left")
