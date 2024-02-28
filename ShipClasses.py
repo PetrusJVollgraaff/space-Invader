@@ -94,6 +94,14 @@ class SpaceShip(Ship):
         self.color = (255, 255, 255)
         self.player = "player"
 
+    def inSideScreen(self, dir, screen_width):
+        if self.x >= 6 and dir == "left":
+            return True
+        elif (self.x + 65) <= screen_width - 6 and dir == "right":
+            return True
+
+        return False
+
 
 class EnemyShip(Ship):
 

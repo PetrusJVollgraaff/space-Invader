@@ -2,7 +2,6 @@ from ShipClasses import EnemyShip
 class Enemylist:
     def __init__(self, lockedpos={}):
         self.EnemyArr =  [[0 for j in range(5)] for i in range(3)]
-        print(self.EnemyArr)
 
     def buildArr(self):
         for i, line in enumerate(self.EnemyArr):
@@ -27,3 +26,10 @@ class Enemylist:
             for j, enemyship in enumerate(line):
                 if not enemyship.isHit:
                     ship.checkBulletHit(enemyship)
+
+    def isAllEneniesHit(self):
+        for i, line in enumerate(self.EnemyArr):
+            for j, enemyship in enumerate(line):
+                if not enemyship.isHit:
+                    return False
+        return True
