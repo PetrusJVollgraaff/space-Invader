@@ -27,4 +27,5 @@ def main_menu(win):
 win = pygame.display.set_mode((game.screen_width, game.screen_height))
 pygame.display.set_caption('Space Invader')
 
-main_menu(win)  # start game
+if __name__ == "__main__":
+    main_menu(win)  # start game
